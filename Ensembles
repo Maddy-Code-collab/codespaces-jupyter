@@ -1,0 +1,18 @@
+# Dictionaries {} as an input to the function wrf.getVar(),all input with same dimension.
+
+from __future__ import print_function
+
+from netCDF4 import Dataset
+from wrf import getvar, ALL_TIMES
+
+wrf_dict = {"ens1" : [Dataset("ens1/wrfout_d01_2016-10-07_00_00_00"),
+                      Dataset("ens1/wrfout_d01_2016-10-07_01_00_00"),
+                      Dataset("ens1/wrfout_d01_2016-10-07_02_00_00")],
+            "ens2" : [Dataset("ens2/wrfout_d01_2016-10-07_00_00_00"),
+                      Dataset("ens2/wrfout_d01_2016-10-07_01_00_00"),
+                      Dataset("ens2/wrfout_d01_2016-10-07_02_00_00")]
+            }
+
+p = getvar(wrf_dict, "P", timeidx=ALL_TIMES)
+
+print(p)
